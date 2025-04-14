@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="rowItem" extends="Group">
+
+  <interface>
+    <field id="itemContent" type="node" onChange="itemContentChanged"  alwaysnotify="true"/>
+  </interface>
+
+  <children>
+      <Poster
+        id="poster"
+        translation = "[ 0, 0 ]"
+        loadWidth = "254"
+        loadHeight = "382"
+        loadDisplayMode="scaleToZoom">
+      </Poster>
+
+      <Label
+        id="title"
+        horizAlign = "left"
+        vertAlign = "bottom"
+        width = "249"
+        height="378"
+        wrap="true"
+        numLines = "1"
+        lineSpacing="0"
+        ellipsizeOnBoundary="true"
+        color="0xEEEEEE"
+        translation = "[ 5, 0 ]">
+        <Font
+        id = "titleTextFont"
+        role = "font"
+        uri = "pkg:/fonts/Poppins.ttf"
+        size = "28" />
+      </Label> 
+  </children>
+
+  <script type="text/brightscript" uri="rowitem.brs" />
+
+</component>

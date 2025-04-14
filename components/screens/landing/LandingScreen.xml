@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<component name="LandingScreen" extends="BaseScreen" initialFocus="RowList">
+
+    <children>
+        <Poster
+            id="heroBanner"
+            translation="[ 0, 0 ]"
+            width="1920"
+            height="1080"
+            loadWidth="1920"
+            loadHeight="1080"
+            loadDisplayMode="scaleToZoom"
+        />
+
+        <Poster
+            id="gradientLayer"
+            translation="[ 0, 0 ]"
+            loadDisplayMode="scaleToFit"
+            uri="pkg:/images/hero-gradient.png"
+        />
+
+        <Label
+            id="loading"
+            horizAlign="center"
+            vertAlign="center"
+            text="Loading..."
+            visible="true"
+            translation="[ 0, 0 ]">
+        </Label>
+
+        <Label
+            id="title"
+            horizAlign="left"
+            vertAlign="center"
+            text=""
+            visible="true"
+            width = "1200"
+            translation="[ 95, 60 ]">
+            <Font role = "font" uri = "pkg:/fonts/Poppins.ttf" size = "50" />
+        </Label>
+        <Label 
+            id="description"
+            horizAlign="left"
+            vertAlign="top"
+            text=""
+            width = "1200"
+            visible="true"
+            translation="[ 95, 140 ]"
+            wrap="true"
+            numLines = "4"
+            lineSpacing="0"
+            ellipsizeOnBoundary="true"
+            >
+        </Label>
+
+        <RowList
+            id="RowList"
+            itemComponentName="rowItem"
+            focusXOffset="[40]"
+            itemSize="[1920,120]"
+            numRows="2"
+            fadeFocusFeedbackWhenAutoScrolling="false"
+            focusBitmapBlendColor="0xFFFFFF"
+            rowFocusAnimationStyle="fixedFocusWrap"
+            vertFocusAnimationStyle="fixedFocus"
+            rowHeights="[380,620]"
+            rowItemSize="[[476,273],[254,382]]"
+            rowItemSpacing="[[40,0]]"
+            rowLabelOffset="[[35,20]]"
+            showRowLabel="[true, true]"
+            translation="[60,488]" />
+
+    </children>
+
+    <interface>
+        <field id="launchBeacon" type="bool" alwaysnotify="true" />
+        <field id="content" type="node" alias="RowList.content" />
+        <field id="focusedContent" type="node" onChange="updateHeroContent" />
+        <field id="itemFocused" type="intarray" alias="RowList.rowItemFocused" alwaysnotify="false"
+            onChange="onItemFocused" />
+        <field id="selectedContent" type="intarray" onChange="onSelectedContent" alias="RowList.rowItemSelected" />
+    </interface>
+
+    <script type="text/brightscript" uri="pkg:/components/screens/landing/LandingScreen.brs" />
+</component>
