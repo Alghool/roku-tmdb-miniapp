@@ -2,6 +2,7 @@ sub init()
     m.top.setFocus(true)
     m.LandingScreen = m.top.FindNode("LandingScreen")
     m.DetailsScreen = m.top.FindNode("DetailsScreen")
+    ' ahow landing screen for content selection
     showLandingScreen()
 end sub
 
@@ -10,6 +11,7 @@ sub OnAppLaunchCompleted()
 end sub
 
 sub OnDetailsContentSelected()
+    'handle screen navigation
     m.top.setFocus(true)
     content = m.top.detailsContent
     if content <> invalid
@@ -20,13 +22,15 @@ sub OnDetailsContentSelected()
 endsub
 
 sub showLandingScreen()
+    'show landing page
     m.LandingScreen.visible = true
-    m.detailsscreen.visible = false
+    m.Detailsscreen.visible = false
     m.LandingScreen.setFocus(true) 
 end sub
 
 sub showDetailsScreen()
+    'show details page
     m.LandingScreen.visible = false
-    m.detailsscreen.visible = true
+    m.Detailsscreen.visible = true
     m.DetailsScreen.setFocus(true)
 end sub

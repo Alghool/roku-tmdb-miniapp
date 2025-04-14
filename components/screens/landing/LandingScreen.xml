@@ -27,6 +27,10 @@
             text="Loading..."
             visible="true"
             translation="[ 0, 0 ]">
+            <Font
+                role="font"
+                uri="pkg:/fonts/Poppins.ttf"
+                size="50" />
         </Label>
 
         <Label

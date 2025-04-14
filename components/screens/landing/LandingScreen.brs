@@ -17,7 +17,7 @@ sub Init()
   m.descriptionText = m.top.findNode("description")
   'shows loading text
   showLoading()
-  'fetching first rail or carousel
+  'fetching data in parallel to save run time
   fetchNowPlayingMovies()
   fetchPopularMovies() 
 end sub
@@ -49,7 +49,6 @@ end sub
 
 function onNowPlayingFetched(event as object)
   if event.getData() = "Success"
-    ' items = getNowPlayingMoviesData(event.getRoSGNode().data)
     items = getPopularMoviesData(event.getRoSGNode().data) 
     m.rowListData.nowPlaying = items
 
@@ -68,7 +67,7 @@ sub fetchPopularMovies()
     requestTask = CreateObject("roSGNode", "RequestTask")
     requestTask.status = "None"
     requestTask.type = "get"
-    'https://api.themoviedb.org/3/movie/popular
+                      'https://api.themoviedb.org/3/movie/popular
     requestTask.url = "https://api.themoviedb.org/3/movie/popular"
     requestTask.observeField("status", "onPopularFetched")
     requestTask.control = "RUN"
@@ -81,7 +80,6 @@ function onPopularFetched(event as object)
  
     items = getPopularMoviesData(event.getRoSGNode().data) 
     m.rowListData.popular = items
-
 
     m.loadCount++
     if m.loadCount = 2
@@ -116,6 +114,5 @@ end sub
 sub onSelectedContent()
   selectedIndex = m.top.selectedContent
   selectedContent = m.top.content.getChild(selectedIndex[0]).getChild(selectedIndex[1])
-  ?selectedContent
   m.top.getscene().detailsContent = selectedContent
 end sub

@@ -1,13 +1,14 @@
 sub Init()
-  
   'observer for screen visibility
   m.top.observeField("visible", "onVisibleChange")
-  
+  'details tags
   m.heroBanner = m.top.findNode("heroBanner")
   m.titleText = m.top.findNode("title")
   m.descriptionText = m.top.findNode("description")
+  'monitor description text Ellipsis
   m.descriptionText.observeField("isTextEllipsized", "onDscriptionEllipsisChanged")
   m.moreBtn = m.top.findNode("moreBtn")
+  'handle readmore btn selection
   m.moreBtn.observeField("buttonSelected", "onButtonSelected")
 end sub
 
@@ -19,6 +20,7 @@ end sub
 
 sub onSelectedContent()
   content = m.top.selectedContent
+  'load content data and initalize values
   if content <> invalid
     m.heroBanner.uri = content.herobannerurl
     m.titleText.text = content.title
@@ -30,6 +32,7 @@ sub onSelectedContent()
 end sub
 
 sub onDscriptionEllipsisChanged()
+  'handle read more button visiblity
   if  m.descriptionText.numLines = 2 AND m.descriptionText.isTextEllipsized
     m.moreBtn.text = "Read More"
     m.moreBtn.visible = true 
@@ -42,6 +45,7 @@ sub onDscriptionEllipsisChanged()
 end sub
 
 sub onButtonSelected()
+  'handle read more button functionality
   if m.descriptionText.numLines = 2 
     m.descriptionText.numLines = 0
   else 
@@ -51,7 +55,7 @@ end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
   if press then
-    ? "btn: " + key + " is pressed" 
+    ' handle back to landing page
     if key = "back" then
       m.top.getScene().detailsContent = invalid
       return true
